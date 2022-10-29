@@ -308,7 +308,7 @@ function App() {
 					handleExit={handleExit}
 				/>
 
-				<Route exact path="/">
+				<Route exact path="*">
 
 					<ProtectedRoute
 						exact
