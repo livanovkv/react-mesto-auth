@@ -6,15 +6,16 @@ import ImagePopup from '../ImagePopup/ImagePopup';
 import React, { useState, useEffect } from "react";
 import { Route, useHistory } from 'react-router-dom';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-import { api } from '../utils/Api';
-import { TranslationContext } from '../../contexts/CurrentUserContext';
+import { api } from '../../utils/Api';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import EditProfilePopup from '../EditProfilePopup/EditProfilePopup';
 import EditAvatarPopup from '../EditAvatarPopup/EditAvatarPopup';
 import AddPlacePopup from '../AddPlacePopup/AddPlacePopup';
 import ConfirmDeletePopup from '../ConfirmDeletePopup/ConfirmDeletePopup';
-import { auth } from '../utils/Auth';
-import InformMessagePopup from '../InformMessagePopup/InformMessagePopup';
-import Authorization from '../Authorization/Authorization';
+import { auth } from '../../utils/Auth';
+import InfoToolTip from '../InfoToolTip/InfoToolTip';
+import Login from '../Login/Login';
+import Register from '../Register/Register';
 
 
 function App() {
@@ -300,7 +301,7 @@ function App() {
 	}
 
 	return (
-		<TranslationContext.Provider value={currentUser}>
+		<CurrentUserContext.Provider value={currentUser}>
 			<div className="page">
 				<Header
 					email={isEmail}
@@ -326,9 +327,7 @@ function App() {
 				</Route>
 				<Route path="/sign-up">
 
-					<Authorization
-						title='Регистрация'
-						name='register'
+					<Register
 						buttonText={`${!isDownload ? 'Зарегистрироваться' : 'Регистрирую...'}`}
 						isButtonDisabled={isButtonDisabled}
 						setIsButtonDisabled={setIsButtonDisabled}
@@ -337,13 +336,11 @@ function App() {
 						setIsEmail={setIsEmail}
 						isValidFormRegister={isValidFormRegister}
 					/>
-
 				</Route>
+
 				<Route path="/sign-in">
 
-					<Authorization
-						title='Вход'
-						name='login'
+					<Login
 						buttonText={`${!isDownload ? 'Войти' : 'Проверяю...'}`}
 						isButtonDisabled={isButtonDisabled}
 						setIsButtonDisabled={setIsButtonDisabled}
@@ -390,13 +387,13 @@ function App() {
 				/>
 
 				<ImagePopup card={selectedCard} />
-				<InformMessagePopup
+				<InfoToolTip
 					isOpenPopupMessage={isOpenPopupMessage}
 					isRegister={isRegister}
 					isLoggedIn={isLoggedIn}
 				/>
 			</div>
-		</TranslationContext.Provider >
+		</CurrentUserContext.Provider >
 	);
 }
 

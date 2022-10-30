@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
-import FormValidator from "../../hooks/FormValidator/FormValidator";
+import useFormValidator from "../../hooks/useFormValidator/useFormValidator";
 
 function AddPlacePopup({
 	isOpen,
@@ -9,7 +9,7 @@ function AddPlacePopup({
 	isButtonDisabled,
 	setIsButtonDisabled
 }) {
-	const { setIsEventInput, setIsOpenForm, isValidForm, isValidInput, isErrorMessage } = FormValidator();
+	const { setIsEventInput, setIsOpenForm, isValidForm, isValidInput, isErrorMessage } = useFormValidator();
 
 	const { cardTitleErrorMessage = '', cardLinkErrorMessage = '' } = isErrorMessage;
 

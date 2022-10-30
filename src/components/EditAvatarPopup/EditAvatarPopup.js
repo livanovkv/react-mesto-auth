@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
-import FormValidator from "../../hooks/FormValidator/FormValidator";
+import useFormValidator from "../../hooks/useFormValidator/useFormValidator";
 
 function EditAvatarPopup({
 	isOpen,
@@ -9,7 +9,7 @@ function EditAvatarPopup({
 	isButtonDisabled,
 	setIsButtonDisabled
 }) {
-	const { setIsEventInput, setIsOpenForm, isValidForm, isValidInput, isErrorMessage } = FormValidator();
+	const { setIsEventInput, setIsOpenForm, isValidForm, isValidInput, isErrorMessage } = useFormValidator();
 
 	const { avatarUrlErrorMessage = '' } = isErrorMessage;
 
@@ -54,6 +54,7 @@ function EditAvatarPopup({
 				name="avatarUrl-input"
 				ref={avatarRef}
 				onChange={handleUrlChange}
+				value={avatarRef.value}
 			/>
 			<span className={`avatarUrl-input-error popup__input-error ${!avatarUrlValidInput ? "popup__input-error_visible" : ''}`}>{avatarUrlErrorMessage}</span>
 		</PopupWithForm>

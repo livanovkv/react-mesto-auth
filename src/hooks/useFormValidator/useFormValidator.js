@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-function FormValidator() {
+function useFormValidator() {
 	const [isEventInput, setIsEventInput] = useState({})
 
 	const [isValidForm, setIsValidForm] = useState(true)
@@ -57,4 +57,4 @@ function FormValidator() {
 	}
 }
 
-export default FormValidator;
+export default useFormValidator;

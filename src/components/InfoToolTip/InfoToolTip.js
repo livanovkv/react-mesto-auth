@@ -1,9 +1,9 @@
 import React from "react";
-import './InformMessagePopup.css';
+import './InfoToolTip.css';
 import ok from '../../images/ok_message.svg'
 import error from '../../images/error_message.svg'
 
-function InformMessagePopup({
+function InfoToolTip({
 	isOpenPopupMessage,
 	isRegister,
 	isLoggedIn
@@ -19,4 +19,4 @@ function InformMessagePopup({
 	)
 }
 
-export default InformMessagePopup;
+export default InfoToolTip;

@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { Link, Route, withRouter } from 'react-router-dom';
-import FormValidator from "../../hooks/FormValidator/FormValidator";
-import './Authorization.css';
+import useFormValidator from "../../hooks/useFormValidator/useFormValidator";
+import './Login.css';
 
-function Authorization({
-	title,
-	name,
+function Login({
 	buttonText,
 	isButtonDisabled,
 	setIsButtonDisabled,
@@ -14,13 +12,13 @@ function Authorization({
 	setIsEmail,
 	isValidFormRegister
 }) {
-	const { setIsEventInput, isValidForm, isValidInput, isErrorMessage } = FormValidator();
+	const { setIsEventInput, isValidForm, isValidInput, isErrorMessage } = useFormValidator();
 
 	const { emailErrorMessage = '', passwordErrorMessage = '' } = isErrorMessage;
 
 	const { emailValidInput = true, passwordValidInput = true } = isValidInput;
 
-	const [isPassword, setIsPassword] = useState({});
+	const [isPassword, setIsPassword] = useState('');
 
 	function handleEmailChange(event) {
 		setIsEmail(event.target.value.trim());
@@ -39,17 +37,17 @@ function Authorization({
 	}
 
 	return (
-		<div className={`authorization authorization_type_${name} ${isValidFormRegister && "onValiddator"}`}>
-			<h1 className="authorization__title">{title}</h1>
+		<div className={`authorization authorization_type_login ${isValidFormRegister && "onValiddator"}`}>
+			<h1 className="authorization__title">Вход</h1>
 			<form
-				className={`authorization__form authorization__form_type_${name}`}
-				name={`${name}Form`}
+				className={`authorization__form authorization__form_type_login`}
+				name={`loginForm`}
 				noValidate
 				onSubmit={handleSubmit}
 			>
 				<input
-					id={`${name}Email-input`}
-					className={`authorization__input authorization__input_${name}-email ${!emailValidInput ? "authorization__input_type_error" : ''}`}
+					id={`loginEmail-input`}
+					className={`authorization__input authorization__input_login-email ${!emailValidInput ? "authorization__input_type_error" : ''}`}
 					required
 					placeholder="Email"
 					spellCheck="true"
@@ -58,10 +56,10 @@ function Authorization({
 					onChange={handleEmailChange}
 					value={isEmail}
 				/>
-				<span className={`authorization__input-error ${name}Email-input-error ${!emailValidInput ? "authorization__input-error_active" : ''}`}>{emailErrorMessage}</span>
+				<span className={`authorization__input-error loginEmail-input-error ${!emailValidInput ? "authorization__input-error_active" : ''}`}>{emailErrorMessage}</span>
 				<input
-					id={`${name}Password-input`}
-					className={`authorization__input authorization__input_${name}-password ${!passwordValidInput ? "authorization__input_type_error" : ''}`}
+					id={`loginPassword-input`}
+					className={`authorization__input authorization__input_login-password ${!passwordValidInput ? "authorization__input_type_error" : ''}`}
 					required
 					placeholder="Пароль"
 					spellCheck="true"
@@ -70,8 +68,9 @@ function Authorization({
 					minLength="6"
 					maxLength="12"
 					onChange={handlePasswordChange}
+					value={isPassword}
 				/>
-				<span className={`authorization__input-error ${name}Password-input-error ${!passwordValidInput ? "authorization__input-error_active" : ''}`}>{passwordErrorMessage}</span>
+				<span className={`authorization__input-error loginPassword-input-error ${!passwordValidInput ? "authorization__input-error_active" : ''}`}>{passwordErrorMessage}</span>
 				<button
 					className={`authorization__save-button ${isButtonDisabled || isValidForm ? "authorization__save-button_active" : ''}`}
 					type="submit"
@@ -89,4 +88,4 @@ function Authorization({
 	)
 }
 
-export default withRouter(Authorization);
+export default withRouter(Login);

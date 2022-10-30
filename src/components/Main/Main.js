@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import './Main.css';
 import Card from "../Card/Card";
-import { TranslationContext } from '../../contexts/CurrentUserContext';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 function Main({
 	onEditAvatar,
@@ -12,7 +12,7 @@ function Main({
 	cards,
 	onCardDelete
 }) {
-	const currentUser = useContext(TranslationContext);
+	const currentUser = useContext(CurrentUserContext);
 
 	return (
 		<main className="content">

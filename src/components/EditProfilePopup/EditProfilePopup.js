@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
-import { TranslationContext } from '../../contexts/CurrentUserContext';
-import FormValidator from "../../hooks/FormValidator/FormValidator";
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import useFormValidator from "../../hooks/useFormValidator/useFormValidator";
 
 function EditProfilePopup({
 	isOpen,
@@ -11,7 +11,7 @@ function EditProfilePopup({
 	isButtonDisabled,
 	setIsButtonDisabled
 }) {
-	const { setIsEventInput, setIsOpenForm, isValidForm, isValidInput, isErrorMessage } = FormValidator();
+	const { setIsEventInput, setIsOpenForm, isValidForm, isValidInput, isErrorMessage } = useFormValidator();
 
 	const { nameErrorMessage = '', aboutErrorMessage = '' } = isErrorMessage;
 
@@ -31,7 +31,7 @@ function EditProfilePopup({
 		setDescription(event.target.value);
 	}
 
-	const currentUser = useContext(TranslationContext);
+	const currentUser = useContext(CurrentUserContext);
 
 	useEffect(() => {
 		setIsOpenForm(isOpen);

@@ -11,10 +11,6 @@ function Header({
 }) {
 	const [isOpenMenuMobile, setIsOpenMenuMobile] = useState(false);
 
-	const refreshPage = () => {
-		window.location.reload(true)
-	}
-
 	const openedMenuMobile = () => {
 		setIsOpenMenuMobile(!isOpenMenuMobile);
 	}
@@ -27,7 +23,7 @@ function Header({
 		<>
 			{isOpenMenuMobile && isLoggedIn && <MenuMobile email={email} onClickExit={onClickExit} />}
 			<header className="header">
-				<div className="header__logo" title="Mesto React" onClick={refreshPage}></div>
+				<div className="header__logo" title="Mesto React"></div>
 				<Route exact path="/">
 					<p className='header__email'>{email}
 						<Link to="/sign-in" className="header__link-entry header__link-entry_type_color" onClick={onClickExit}>Выйти</Link>
