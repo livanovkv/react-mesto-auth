@@ -85,21 +85,6 @@ function App() {
 	}, [isLoggedIn]);
 
 	useEffect(() => {
-		if (isLoggedIn) {
-			api
-				.getCards()
-				.then((cards) => {
-					setCards(cards);
-				})
-				.catch((err) => {
-					err.then(({ message }) => {
-						alert(message)
-					})
-				})
-		}
-	}, [isUpdateCards])
-
-	useEffect(() => {
 		function closeByEscape(event) {
 			if (event.key === 'Escape') {
 				closeAllPopups();
@@ -229,7 +214,7 @@ function App() {
 			.deleteCard(card._id)
 			.then(() => {
 				closeAllPopups();
-				setIsUpdateCards(!isUpdateCards)
+				setCards((state) => state.filter((item) => item._id !== card._id));
 			})
 			.catch((err) => {
 				err.then((res) => {
@@ -246,7 +231,6 @@ function App() {
 			.then((newCard) => {
 				setCards([newCard, ...cards]);
 				closeAllPopups();
-				setIsUpdateCards(!isUpdateCards)
 			})
 			.catch((err) => {
 				err.then((res) => {
