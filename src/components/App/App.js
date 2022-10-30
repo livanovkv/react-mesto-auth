@@ -28,7 +28,6 @@ function App() {
 	const [isDeleteCard, setIsDeleteCard] = useState({});
 	const [selectedCard, setSelectedCard] = useState(null);
 	const [cards, setCards] = useState([]);
-	const [isUpdateCards, setIsUpdateCards] = useState(false);
 	const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 	const [isOpenPopupMessage, setIsOpenPopupMessage] = useState(false);
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
